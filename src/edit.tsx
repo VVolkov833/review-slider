@@ -1,18 +1,24 @@
 import { __ } from '@wordpress/i18n';
 import { TextControl } from '@wordpress/components';
-
 import {
 	useBlockProps,
 	ColorPalette,
 	InspectorControls,
+	BlockEditProps,
 } from '@wordpress/block-editor';
 
-export default function Edit( { attributes, setAttributes } ) {
-	const onChangeBGColor = ( hexColor ) => {
+interface BlockAttributes {
+	bg_color: string;
+	text_color: string;
+	message: string;
+}
+
+export default function Edit( { attributes, setAttributes }: BlockEditProps<BlockAttributes> ) {
+	const onChangeBGColor = ( hexColor: string ) => {
 		setAttributes( { bg_color: hexColor } );
 	};
 
-	const onChangeTextColor = ( hexColor ) => {
+	const onChangeTextColor = ( hexColor: string ) => {
 		setAttributes( { text_color: hexColor } );
 	};
 
@@ -22,21 +28,18 @@ export default function Edit( { attributes, setAttributes } ) {
 				<div className="border-2 border-green-700">
 					<fieldset>
 						<legend className="blocks-base-control__label">
-							{ __(
-								'Background color',
-								'block-development-examples'
-							) }
+							{ __( 'Background color', 'block-development-examples' ) }
 						</legend>
-						<ColorPalette // Element Tag for Gutenberg standard colour selector
-							onChange={ onChangeBGColor } // onChange event callback
+						<ColorPalette
+							onChange={ onChangeBGColor }
 						/>
 					</fieldset>
 					<fieldset>
 						<legend className="blocks-base-control__label">
 							{ __( 'Text color', 'block-development-examples' ) }
 						</legend>
-						<ColorPalette // Element Tag for Gutenberg standard colour selector
-							onChange={ onChangeTextColor } // onChange event callback
+						<ColorPalette
+							onChange={ onChangeTextColor }
 						/>
 					</fieldset>
 				</div>
