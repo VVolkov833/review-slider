@@ -19,7 +19,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls key="setting">
-				<div>
+				<div className="border-2 border-green-700">
 					<fieldset>
 						<legend className="blocks-base-control__label">
 							{ __(

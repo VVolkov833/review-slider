@@ -1,4 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
+import './style.css';
+
 
 export default function save( { attributes } ) {
 	return (
@@ -10,6 +12,7 @@ export default function save( { attributes } ) {
 			} }
 		>
 			{ attributes.message }
+			<div class="border-2 border-red-500">test</div>
 		</div>
 	);
 }
