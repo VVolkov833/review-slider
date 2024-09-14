@@ -1,57 +1,88 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl } from '@wordpress/components';
+import { TextControl, Button, TextareaControl, RangeControl } from '@wordpress/components';
 import {
 	useBlockProps,
-	ColorPalette,
 	InspectorControls,
 	BlockEditProps,
 } from '@wordpress/block-editor';
 
+interface Fieldset {
+	title: string;
+	content: string;
+}
+
 interface BlockAttributes {
+	fieldsets: Fieldset[];
+	items: number;
 	bg_color: string;
 	text_color: string;
-	message: string;
 }
 
 export default function Edit( { attributes, setAttributes }: BlockEditProps<BlockAttributes> ) {
-	const onChangeBGColor = ( hexColor: string ) => {
-		setAttributes( { bg_color: hexColor } );
+
+	// Add a new fieldset
+	const addFieldset = () => {
+		const newFieldset = { title: '', content: '' };
+		setAttributes( { fieldsets: [ ...attributes.fieldsets, newFieldset ] } );
 	};
 
-	const onChangeTextColor = ( hexColor: string ) => {
-		setAttributes( { text_color: hexColor } );
+	// Remove a fieldset
+	const removeFieldset = ( index: number ) => {
+		const updatedFieldsets = [ ...attributes.fieldsets ];
+		updatedFieldsets.splice( index, 1 );
+		setAttributes( { fieldsets: updatedFieldsets } );
+	};
+
+	// Update fieldset title or content
+	const updateFieldset = ( index: number, key: keyof Fieldset, value: string ) => {
+		const updatedFieldsets = [ ...attributes.fieldsets ];
+		updatedFieldsets[index][key] = value;
+		setAttributes( { fieldsets: updatedFieldsets } );
 	};
 
 	return (
 		<div { ...useBlockProps() }>
-			<InspectorControls key="setting">
-				<div className="border-2 border-green-700">
+			<InspectorControls key="settings">
+				<div className="block-editor-block-settings">
 					<fieldset>
-						<legend className="blocks-base-control__label">
-							{ __( 'Background color', 'block-development-examples' ) }
-						</legend>
-						<ColorPalette
-							onChange={ onChangeBGColor }
-						/>
-					</fieldset>
-					<fieldset>
-						<legend className="blocks-base-control__label">
-							{ __( 'Text color', 'block-development-examples' ) }
-						</legend>
-						<ColorPalette
-							onChange={ onChangeTextColor }
+						<legend>{ __( 'Slider Settings', 'block-development-examples' ) }</legend>
+						<RangeControl
+							label={ __( 'Items per row', 'block-development-examples' ) }
+							value={ attributes.items }
+							onChange={ ( val ) => setAttributes( { items: val } ) }
+							min={ 1 }
+							max={ 4 }
 						/>
 					</fieldset>
 				</div>
 			</InspectorControls>
-			<TextControl
-				value={ attributes.message }
-				onChange={ ( val ) => setAttributes( { message: val } ) }
-				style={ {
-					backgroundColor: attributes.bg_color,
-					color: attributes.text_color,
-				} }
-			/>
+
+			{/* Render the fieldsets */}
+			<div className="block-editor-fieldsets">
+				{ attributes.fieldsets.map( ( fieldset, index ) => (
+					<div key={ index } className="fieldset">
+						<TextControl
+							label={ __( 'Title', 'block-development-examples' ) }
+							value={ fieldset.title }
+							onChange={ ( val ) => updateFieldset( index, 'title', val ) }
+						/>
+						<TextareaControl
+							label={ __( 'Content', 'block-development-examples' ) }
+							value={ fieldset.content }
+							onChange={ ( val ) => updateFieldset( index, 'content', val ) }
+						/>
+						<Button
+							isDestructive
+							onClick={ () => removeFieldset( index ) }
+						>
+							{ __( 'Remove Fieldset', 'block-development-examples' ) }
+						</Button>
+					</div>
+				) ) }
+				<Button isPrimary onClick={ addFieldset }>
+					{ __( 'Add Fieldset', 'block-development-examples' ) }
+				</Button>
+			</div>
 		</div>
 	);
 }

@@ -23,11 +23,3 @@ function settings_sidebar_82c525__register_block() {
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'settings_sidebar_82c525__register_block' );
-
-function my_plugin_enqueue_block_assets() {
-    wp_enqueue_style(
-        'my-plugin-frontend-styles',
-        plugins_url( 'build/style-index.css', __FILE__ )
-    );
-}
-add_action( 'enqueue_block_assets', 'my_plugin_enqueue_block_assets' );

@@ -1,0 +1,16 @@
+.tns-nav {
+    @apply pt-2;
+    @apply flex justify-center;
+
+    button {
+        @apply z-40;
+        @apply cursor-pointer;
+        @apply w-8 h-8 block;
+
+        @apply before:rounded-full;
+        @apply before:w-1.5 before:h-1.5 before:m-4 before:block;
+        @apply before:bg-[#ccc];
+        @apply before:transition-all before:duration-300;
+
+    }
+}

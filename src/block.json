@@ -7,11 +7,20 @@
 	"category": "widgets",
 	"example": {},
 	"attributes": {
-		"message": {
-			"type": "string",
-			"source": "text",
-			"selector": "div",
-			"default": ""
+		"fieldsets": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": { "type": "string", "default": "" },
+					"content": { "type": "string", "default": "" }
+				}
+			}
+		},
+		"items": {
+			"type": "number",
+			"default": 1
 		},
 		"bg_color": { 
 			"type": "string", 
@@ -23,7 +32,9 @@
 		}
 	},
 	"textdomain": "block-development-examples",
-	"editorScript": "file:./index.js",
+	"script": "file:./index.js",
+	"style": "file:./style-index.css",
+	"editorStyle": "file:./index.css",
 	"keywords": [
 		"82c525"
 	]

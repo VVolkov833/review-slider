@@ -1,0 +1,96 @@
+.tns-nav {
+
+    padding-top: 0.5rem;
+
+    display: flex;
+
+    justify-content: center;
+
+    button {
+
+        z-index: 40
+    }
+
+    button {
+
+        cursor: pointer
+    }
+
+    button {
+
+        display: block
+    }
+
+    button {
+
+        height: 2rem
+    }
+
+    button {
+
+        width: 2rem
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        border-radius: 9999px
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        margin: 1rem
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        display: block
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        height: 0.375rem
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        width: 0.375rem
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        --tw-bg-opacity: 1;
+
+        background-color: rgb(204 204 204 / var(--tw-bg-opacity))
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        transition-property: all;
+
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+        transition-duration: 150ms
+    }
+
+    button::before {
+
+        content: var(--tw-content);
+
+        transition-duration: 300ms
+    }
+}
+
