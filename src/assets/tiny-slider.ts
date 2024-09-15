@@ -1,11 +1,22 @@
 import { tns } from 'tiny-slider'
 import { TinySliderSettings } from 'tiny-slider'
+import 'tiny-slider/dist/tiny-slider.css'
 import './tiny-slider.css'
 
 class TinySlider extends HTMLElement {
     constructor () {
         super()
-        tns(this.options)
+        this.waitForDOM();
+    }
+
+    private waitForDOM() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                tns(this.options);
+            });
+        } else {
+            tns(this.options);
+        }
     }
 
     private get options (): TinySliderSettings {

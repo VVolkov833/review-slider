@@ -12,5 +12,9 @@
         @apply before:bg-[#ccc];
         @apply before:transition-all before:duration-300;
 
+        &.tns-nav-active {
+            @apply before:bg-[#f00];
+            @apply before:w-4 before:h-4 before:m-[0.65rem] before:block;
+        }
     }
 }

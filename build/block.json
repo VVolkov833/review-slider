@@ -39,7 +39,10 @@
   },
   "textdomain": "block-development-examples",
   "script": "file:./index.js",
-  "style": "file:./style-index.css",
+  "style": [
+    "file:./style-index.css",
+    "file:./index.css"
+  ],
   "editorStyle": "file:./index.css",
   "keywords": [
     "82c525"
