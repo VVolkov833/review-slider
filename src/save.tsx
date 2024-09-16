@@ -29,9 +29,11 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
                 className="flex">
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
 					<div key={ index } className="fieldset-slide border border-red-500 border-dotted">
-						<h2 class="a">{ fieldset.title }</h2>
-						<div>{ fieldset.content }</div>
-						<button>Read more</button>
+						<h2>{ fieldset.title }</h2>
+						<excerpt-readmore excerpt-length="430">
+							<div>{ fieldset.content }</div>
+							<div class="hidden"><button>readmore</button></div>
+                    	</excerpt-readmore>
 					</div>
 				) ) }
 			</tiny-slider>

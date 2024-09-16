@@ -1,5 +1,3 @@
 /* @tailwind base; */
-.tns-outer {
-    @tailwind components;
-    @tailwind utilities;
-}
+@tailwind components;
+@tailwind utilities;

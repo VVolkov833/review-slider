@@ -13,6 +13,20 @@ class ExcerptReadmore extends HTMLElement {
 
     constructor () {
         super()
+        this.waitForDOM();
+    }
+
+    waitForDOM () {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.init();
+            });
+        } else {
+            this.init();
+        }
+    }
+
+    init () {
         this.string = this.textContainer.innerText
 
         let excerptLength = +(this.getAttribute('excerpt-length') || ExcerptReadmore.defaultExcerptLength)

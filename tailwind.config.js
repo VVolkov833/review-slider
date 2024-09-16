@@ -6,6 +6,9 @@ module.exports = {
     './src/**/*.ts',
     './src/**/*.tsx',
   ],
+  options: {
+    safelist: ['tns-outer'],
+  },
   purge: {
     content: [
       './**/*.php',
