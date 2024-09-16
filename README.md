@@ -86,3 +86,40 @@ Copy code
 }
 Summary
 By creating a custom webpack.config.js, you can control multiple entry points for your TypeScript files and ensure that your tiny-slider.ts is compiled into a separate frontend.js file. This file will then be enqueued on the frontend as part of your block's block.json configuration.
+
+
+Handling Styles in webpack.config.js
+If you need to customize how styles are built or bundled, you can adjust the webpack.config.js:
+
+javascript
+Copy code
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const path = require('path');
+
+module.exports = {
+    ...defaultConfig,
+    entry: {
+        'index': path.resolve(__dirname, 'src/index.ts'), // Editor script
+        'frontend': path.resolve(__dirname, 'src/frontend.ts') // Frontend script
+    },
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: '[name].js',
+    },
+    resolve: {
+        extensions: ['.ts', '.js'], // Add TypeScript support
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            }
+        ],
+    },
+};
