@@ -30,7 +30,7 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 				speed="1000"
 				gutter="20"
 				items="2"
-				className="flex">
+				className="flex tiny-slider">
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
 					<div key={ index } className="review">
 						<h2>{fieldset.provider}</h2>

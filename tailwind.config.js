@@ -7,7 +7,7 @@ module.exports = {
     './src/**/*.tsx',
   ],
   options: {
-    safelist: ['tns-outer'],
+    safelist: ['wp-block-block-development-examples-settings-sidebar-82c525'],
   },
   purge: {
     content: [

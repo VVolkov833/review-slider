@@ -1,3 +1,5 @@
 /* @tailwind base; */
-@tailwind components;
-@tailwind utilities;
+.wp-block-block-development-examples-settings-sidebar-82c525 {
+    @tailwind components;
+    @tailwind utilities;
+}
