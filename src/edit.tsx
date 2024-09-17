@@ -1,10 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, Button, TextareaControl, RangeControl } from '@wordpress/components';
-import {
-	useBlockProps,
-	InspectorControls,
-	BlockEditProps,
-} from '@wordpress/block-editor';
+import { TextControl, TextareaControl, RangeControl, PanelBody, Button, Panel } from '@wordpress/components';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
 interface Fieldset {
 	title: string;
@@ -14,75 +10,87 @@ interface Fieldset {
 interface BlockAttributes {
 	fieldsets: Fieldset[];
 	items: number;
-	bg_color: string;
-	text_color: string;
 }
 
-export default function Edit( { attributes, setAttributes }: BlockEditProps<BlockAttributes> ) {
-
+export default function Edit({ attributes, setAttributes }: BlockEditProps<BlockAttributes>) {
 	// Add a new fieldset
 	const addFieldset = () => {
 		const newFieldset = { title: '', content: '' };
-		setAttributes( { fieldsets: [ ...attributes.fieldsets, newFieldset ] } );
+		setAttributes({ fieldsets: [...attributes.fieldsets, newFieldset] });
 	};
 
 	// Remove a fieldset
-	const removeFieldset = ( index: number ) => {
-		const updatedFieldsets = [ ...attributes.fieldsets ];
-		updatedFieldsets.splice( index, 1 );
-		setAttributes( { fieldsets: updatedFieldsets } );
+	const removeFieldset = (index: number) => {
+		const updatedFieldsets = [...attributes.fieldsets];
+		updatedFieldsets.splice(index, 1);
+		setAttributes({ fieldsets: updatedFieldsets });
 	};
 
 	// Update fieldset title or content
-	const updateFieldset = ( index: number, key: keyof Fieldset, value: string ) => {
-		const updatedFieldsets = [ ...attributes.fieldsets ];
+	const updateFieldset = (index: number, key: keyof Fieldset, value: string) => {
+		const updatedFieldsets = [...attributes.fieldsets];
 		updatedFieldsets[index][key] = value;
-		setAttributes( { fieldsets: updatedFieldsets } );
+		setAttributes({ fieldsets: updatedFieldsets });
 	};
 
-	return (
-		<div { ...useBlockProps() }>
-			<InspectorControls key="settings">
-				<div className="block-editor-block-settings">
-					<fieldset>
-						<legend>{ __( 'Slider Settings', 'block-development-examples' ) }</legend>
-						<RangeControl
-							label={ __( 'Items per row', 'block-development-examples' ) }
-							value={ attributes.items }
-							onChange={ ( val ) => setAttributes( { items: val } ) }
-							min={ 1 }
-							max={ 4 }
-						/>
-					</fieldset>
+	// Visual preview of the slider in the editor (read-only)
+	const previewSlides = () => (
+		<div className="flex">
+			{attributes.fieldsets.map((fieldset, index) => (
+				<div key={index} className="fieldset-slide border border-red-500 border-dotted">
+					<h2>{fieldset.title}</h2>
+					<div>{fieldset.content}</div>
 				</div>
+			))}
+		</div>
+	);
+
+	return (
+		<div {...useBlockProps()}>
+			<InspectorControls>
+				<PanelBody title={__('Slider Settings', 'block-development-examples')}>
+					<RangeControl
+						label={__('Items per row', 'block-development-examples')}
+						value={attributes.items}
+						onChange={(val) => setAttributes({ items: val })}
+						min={1}
+						max={4}
+					/>
+				</PanelBody>
+
+				<PanelBody title={__('Fieldsets', 'block-development-examples')} initialOpen={true}>
+					{attributes.fieldsets.map((fieldset, index) => (
+						<PanelBody
+							key={index}
+							title={fieldset.title || `${__('Fieldset', 'block-development-examples')} ${index + 1}`}
+							initialOpen={false} // Fieldsets are collapsed by default
+						>
+							<TextControl
+								label={__('Title', 'block-development-examples')}
+								value={fieldset.title}
+								onChange={(val) => updateFieldset(index, 'title', val)}
+							/>
+							<TextareaControl
+								label={__('Content', 'block-development-examples')}
+								value={fieldset.content}
+								onChange={(val) => updateFieldset(index, 'content', val)}
+							/>
+							<Button
+								isDestructive
+								onClick={() => removeFieldset(index)}
+							>
+								{__('Remove Fieldset', 'block-development-examples')}
+							</Button>
+						</PanelBody>
+					))}
+					<Button isPrimary onClick={addFieldset}>
+						{__('Add Fieldset', 'block-development-examples')}
+					</Button>
+				</PanelBody>
 			</InspectorControls>
 
-			{/* Render the fieldsets */}
-			<div className="block-editor-fieldsets">
-				{ attributes.fieldsets.map( ( fieldset, index ) => (
-					<div key={ index } className="fieldset">
-						<TextControl
-							label={ __( 'Title', 'block-development-examples' ) }
-							value={ fieldset.title }
-							onChange={ ( val ) => updateFieldset( index, 'title', val ) }
-						/>
-						<TextareaControl
-							label={ __( 'Content', 'block-development-examples' ) }
-							value={ fieldset.content }
-							onChange={ ( val ) => updateFieldset( index, 'content', val ) }
-						/>
-						<Button
-							isDestructive
-							onClick={ () => removeFieldset( index ) }
-						>
-							{ __( 'Remove Fieldset', 'block-development-examples' ) }
-						</Button>
-					</div>
-				) ) }
-				<Button isPrimary onClick={ addFieldset }>
-					{ __( 'Add Fieldset', 'block-development-examples' ) }
-				</Button>
-			</div>
+			{/* Visual preview */}
+			{previewSlides()}
 		</div>
 	);
 }
