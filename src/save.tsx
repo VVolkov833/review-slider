@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
+import Google from './components/Google';
+import Jameda from './components/Jameda';
 import './style.css';
 
 interface Fieldset {
@@ -31,15 +33,15 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 				className="flex">
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
 					<div key={ index } className="review">
-						{ fieldset.provider === 'Jameda' && (
-							<h3>{ fieldset.title }</h3>
-						)}
-						<p>{ __( 'Date:', 'block-development-examples' ) } { new Date( fieldset.date ).toLocaleDateString() }</p>
-						<p>{ __( 'Rating:', 'block-development-examples' ) } { fieldset.rating }</p>
-						<excerpt-readmore excerpt-length="430">
-							<div>{ fieldset.text }</div>
-							<div class="hidden"><button>readmore</button></div>
-						</excerpt-readmore>
+						<h2>{fieldset.provider}</h2>
+						{(() => {
+							switch (fieldset.provider) {
+								case 'Google':
+									return <Google text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+								case 'Jameda':
+									return <Jameda title={fieldset.title} text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+							}
+						})()}
 					</div>
 				)) }
 			</tiny-slider>
