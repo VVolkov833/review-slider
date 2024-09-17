@@ -1,10 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, TextareaControl, RangeControl, PanelBody, Button, Panel } from '@wordpress/components';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { TextControl, Button, TextareaControl, RangeControl, SelectControl, PanelBody, DatePicker } from '@wordpress/components';
+import {
+	useBlockProps,
+	InspectorControls,
+	BlockEditProps,
+} from '@wordpress/block-editor';
 
 interface Fieldset {
-	title: string;
-	content: string;
+	provider: string;
+	title?: string;  // For Jameda
+	text: string;
+	rating: number;
+	date: string;
 }
 
 interface BlockAttributes {
@@ -12,25 +19,26 @@ interface BlockAttributes {
 	items: number;
 }
 
-export default function Edit({ attributes, setAttributes }: BlockEditProps<BlockAttributes>) {
-	// Add a new fieldset
+export default function Edit( { attributes, setAttributes }: BlockEditProps<BlockAttributes> ) {
+
+	// Add a new fieldset with Google as default
 	const addFieldset = () => {
-		const newFieldset = { title: '', content: '' };
-		setAttributes({ fieldsets: [...attributes.fieldsets, newFieldset] });
+		const newFieldset = { provider: 'Google', text: '', rating: 5.0, date: new Date().toISOString() };
+		setAttributes( { fieldsets: [ ...attributes.fieldsets, newFieldset ] } );
 	};
 
 	// Remove a fieldset
-	const removeFieldset = (index: number) => {
-		const updatedFieldsets = [...attributes.fieldsets];
-		updatedFieldsets.splice(index, 1);
-		setAttributes({ fieldsets: updatedFieldsets });
+	const removeFieldset = ( index: number ) => {
+		const updatedFieldsets = [ ...attributes.fieldsets ];
+		updatedFieldsets.splice( index, 1 );
+		setAttributes( { fieldsets: updatedFieldsets } );
 	};
 
-	// Update fieldset title or content
-	const updateFieldset = (index: number, key: keyof Fieldset, value: string) => {
-		const updatedFieldsets = [...attributes.fieldsets];
+	// Update fieldset values
+	const updateFieldset = ( index: number, key: keyof Fieldset, value: any ) => {
+		const updatedFieldsets = [ ...attributes.fieldsets ];
 		updatedFieldsets[index][key] = value;
-		setAttributes({ fieldsets: updatedFieldsets });
+		setAttributes( { fieldsets: updatedFieldsets } );
 	};
 
 	// Visual preview of the slider in the editor (read-only)
@@ -46,47 +54,87 @@ export default function Edit({ attributes, setAttributes }: BlockEditProps<Block
 	);
 
 	return (
-		<div {...useBlockProps()}>
-			<InspectorControls>
-				<PanelBody title={__('Slider Settings', 'block-development-examples')}>
+		<div { ...useBlockProps() }>
+			<InspectorControls key="settings">
+				<PanelBody title={ __( 'Slider Settings', 'block-development-examples' ) }>
 					<RangeControl
-						label={__('Items per row', 'block-development-examples')}
-						value={attributes.items}
-						onChange={(val) => setAttributes({ items: val })}
-						min={1}
-						max={4}
+						label={ __( 'Items per row', 'block-development-examples' ) }
+						value={ attributes.items }
+						onChange={ ( val ) => setAttributes( { items: val } ) }
+						min={ 1 }
+						max={ 4 }
 					/>
 				</PanelBody>
-
-				<PanelBody title={__('Fieldsets', 'block-development-examples')} initialOpen={true}>
-					{attributes.fieldsets.map((fieldset, index) => (
-						<PanelBody
-							key={index}
-							title={fieldset.title || `${__('Fieldset', 'block-development-examples')} ${index + 1}`}
-							initialOpen={false} // Fieldsets are collapsed by default
-						>
+				
+				{ attributes.fieldsets.map( ( fieldset, index ) => (
+					<PanelBody
+						key={ index }
+						title={ __( `Review ${index + 1}`, 'block-development-examples' ) }
+						initialOpen={ false }
+					>
+						<SelectControl
+							label={ __( 'Review Provider', 'block-development-examples' ) }
+							value={ fieldset.provider }
+							options={ [
+								{ label: 'Google', value: 'Google' },
+								{ label: 'Jameda', value: 'Jameda' },
+							] }
+							onChange={ ( val ) => updateFieldset( index, 'provider', val ) }
+						/>
+						
+						{ fieldset.provider === 'Jameda' && (
 							<TextControl
-								label={__('Title', 'block-development-examples')}
-								value={fieldset.title}
-								onChange={(val) => updateFieldset(index, 'title', val)}
+								label={ __( 'Title', 'block-development-examples' ) }
+								value={ fieldset.title || '' }
+								onChange={ ( val ) => updateFieldset( index, 'title', val ) }
 							/>
-							<TextareaControl
-								label={__('Content', 'block-development-examples')}
-								value={fieldset.content}
-								onChange={(val) => updateFieldset(index, 'content', val)}
+						)}
+						<TextareaControl	
+							label={ __( 'Text', 'block-development-examples' ) }
+							value={ fieldset.text }
+							onChange={ ( val ) => updateFieldset( index, 'text', val ) }
+						/>
+						{ fieldset.provider === 'Google' && (
+							<TextControl
+								label={ __( 'Rating (1.0 to 5.0)', 'block-development-examples' ) }
+								type="number"
+								value={ fieldset.rating }
+								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
+								min={ 1.0 }
+								max={ 5.0 }
+								step={ 0.1 }
+								placeholder="5.0"
 							/>
-							<Button
-								isDestructive
-								onClick={() => removeFieldset(index)}
-							>
-								{__('Remove Fieldset', 'block-development-examples')}
-							</Button>
-						</PanelBody>
-					))}
-					<Button isPrimary onClick={addFieldset}>
-						{__('Add Fieldset', 'block-development-examples')}
-					</Button>
-				</PanelBody>
+						)}
+						{ fieldset.provider === 'Jameda' && (
+							<TextControl
+								label={ __( 'Rating (0.0 to 1.2)', 'block-development-examples' ) }
+								type="number"
+								value={ fieldset.rating }
+								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
+								min={ 0.0 }
+								max={ 1.2 }
+								step={ 0.1 }
+								placeholder="1.0"
+							/>
+						)}
+						<DatePicker
+							label={ __( 'Date', 'block-development-examples' ) }
+							currentDate={ fieldset.date }
+							onChange={ ( date ) => updateFieldset( index, 'date', date ) }
+						/>
+
+						<Button
+							isDestructive
+							onClick={ () => removeFieldset( index ) }
+						>
+							{ __( 'Remove Fieldset', 'block-development-examples' ) }
+						</Button>
+					</PanelBody>
+				) )}
+				<Button isPrimary onClick={ addFieldset }>
+					{ __( 'Add Fieldset', 'block-development-examples' ) }
+				</Button>
 			</InspectorControls>
 
 			{/* Visual preview */}
