@@ -43,34 +43,45 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 		setAttributes( { fieldsets: updatedFieldsets } );
 	};
 
+	const truncateText = (text: string, maxLength: number) => {
+		if (text.length > maxLength) {
+			return text.substring(0, maxLength) + '...'; // Add ellipsis
+		}
+		return text;
+	};
+
 	// Visual preview of the slider in the editor (read-only)
 	const previewSlides = () => (
 		<div { ...useBlockProps.save() }>
-			<tiny-slider
-				autoplay="1"
-				controls="false"
-				autoplay-timeout="8000"
-				autoplay-hover-pause="true"
-				autoplay-button-output="false"
-				nav-position="bottom"
-				speed="1000"
-				gutter="20"
-				items="2"
-				className="flex">
-				{ attributes.fieldsets.map( ( fieldset, index ) => (
-					<div key={ index } className="review border border-red-500 border-dotted">
-						<h2>{fieldset.provider}</h2>
+			<div className="flex gap-2">
+				{ attributes.fieldsets.slice(0, Math.min(attributes.items, attributes.fieldsets.length)).map( ( fieldset, index ) => (
+					<div key={ index } className="
+						w-full p-3 relative box-border
+						before:mr-[20px] before:absolute before:inset-0 before:-z-10 before:bg-[#fff]
+					">
 						{(() => {
 							switch (fieldset.provider) {
 								case 'Google':
-									return <Google text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+									return <Google rating={fieldset.rating} date={fieldset.date} />;
 								case 'Jameda':
-									return <Jameda title={fieldset.title} text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+									return <Jameda rating={fieldset.rating} date={fieldset.date} title={fieldset.title} />;
 							}
 						})()}
+						<div>
+							<div className={`
+								whitespace-pre-line mt-10 mb-10 pr-7
+								quote-mask before:bg-review-${fieldset.provider}
+                            	before:w-[62px] before:h-[49px] before:-mt-7 before:mr-4 before:float-left before:content-['']
+							`}>{ truncateText(fieldset.text, 430) }</div>
+                            <div className="absolute right-12 bottom-7 text-right">
+                                <button className="appearance-none border-none bg-[transparent] text-inherit underline pointer-events-none opacity-30">
+                                    » { __( 'Read more', 'block-development-examples' ) }
+                                </button>
+                            </div>
+						</div>
 					</div>
 				)) }
-			</tiny-slider>
+			</div>
 		</div>
 	);
 

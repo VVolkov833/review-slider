@@ -33,7 +33,7 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 				class="flex"
 			>
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
-					<div key={ index } className="justify-between p-7 relative before:mr-[20px] before:absolute before:inset-0 before:-z-10 before:bg-[#fff]">
+					<div key={ index } className="p-7 relative before:mr-[20px] before:absolute before:inset-0 before:-z-10 before:bg-[#fff]">
 						{(() => {
 							switch (fieldset.provider) {
 								case 'Google':

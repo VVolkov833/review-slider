@@ -28,6 +28,9 @@
             max-width: 1536px;
         }
     }
+    .pointer-events-none {
+        pointer-events: none;
+    }
     .static {
         position: static;
     }
@@ -43,11 +46,17 @@
     .right-12 {
         left: 3rem;
     }
+    .mb-10 {
+        margin-bottom: 2.5rem;
+    }
     .mb-8 {
         margin-bottom: 2rem;
     }
     .mt-10 {
         margin-top: 2.5rem;
+    }
+    .box-border {
+        box-sizing: border-box;
     }
     .block {
         display: block;
@@ -67,6 +76,9 @@
     .w-\[85px\] {
         width: 85px;
     }
+    .w-full {
+        width: 100%;
+    }
     .transform {
         transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
@@ -81,20 +93,14 @@
     .items-start {
         align-items: flex-start;
     }
-    .justify-between {
-        justify-content: space-between;
+    .gap-2 {
+        gap: 0.5rem;
     }
     .gap-4 {
         gap: 1rem;
     }
     .whitespace-pre-line {
         white-space: pre-line;
-    }
-    .border {
-        border-width: 1px;
-    }
-    .border-dotted {
-        border-style: dotted;
     }
     .border-none {
         border-style: none;
@@ -105,6 +111,9 @@
     .bg-review-Jameda {
         --tw-bg-opacity: 1;
         background-color: rgb(138 210 35 / var(--tw-bg-opacity));
+    }
+    .p-3 {
+        padding: 0.75rem;
     }
     .p-7 {
         padding: 1.75rem;
@@ -150,6 +159,9 @@
     }
     .underline {
         text-decoration-line: underline;
+    }
+    .opacity-30 {
+        opacity: 0.3;
     }
 
     .quote-mask::before {
