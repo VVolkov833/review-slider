@@ -19,6 +19,12 @@ module.exports = {
     ],
   },
   theme: {
+    colors: {
+      review: {
+        Google: '#FFC220',
+        Jameda: '#8ad223',
+      }
+    },
     extend: {},
   },
   plugins: [],

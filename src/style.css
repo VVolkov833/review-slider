@@ -2,4 +2,16 @@
 .wp-block-block-development-examples-settings-sidebar-82c525 {
     @tailwind components;
     @tailwind utilities;
+
+    .quote-mask::before {
+        --mask: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 49'%3E%3Cpath d='M3.869,49c-2.541,-7.259 -3.812,-14.458 -3.812,-21.596c0,-8.227 2.178,-14.852 6.534,-19.873c4.355,-5.021 10.707,-7.531 19.055,-7.531l0,11.433c-6.412,0 -9.618,4.114 -9.618,12.341l0,2.722l11.615,0l0,22.504l-23.774,0Zm34.3,0c-2.42,-7.38 -3.63,-14.579 -3.63,-21.596c0,-8.227 2.147,-14.852 6.442,-19.873c4.296,-5.021 10.617,-7.531 18.965,-7.531l0,11.433c-6.291,0 -9.437,4.114 -9.437,12.341l0,2.722l11.434,0l0,22.504l-23.774,0Z' style='fill:%23000'/%3E%3C/svg%3E%0A");
+        mask-image: var(--mask);
+        -webkit-mask-image: var(--mask);
+        mask-repeat:no-repeat;
+        -webkit-mask-repeat:no-repeat;
+        mask-position:0 0;
+        -webkit-mask-position:0 0;
+        mask-size:contain;
+        -webkit-mask-size:contain;
+    }
 }

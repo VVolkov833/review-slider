@@ -33,16 +33,27 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 				class="flex"
 			>
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
-					<div key={ index } className="review border border-red-500 border-dotted">
-						<h2>{fieldset.provider}</h2>
+					<div key={ index } className="justify-between p-7 relative before:mr-[20px] before:absolute before:inset-0 before:-z-10 before:bg-[#fff]">
 						{(() => {
 							switch (fieldset.provider) {
 								case 'Google':
-									return <Google text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+									return <Google rating={fieldset.rating} date={fieldset.date} />;
 								case 'Jameda':
-									return <Jameda title={fieldset.title} text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+									return <Jameda rating={fieldset.rating} date={fieldset.date} title={fieldset.title} />;
 							}
 						})()}
+						<excerpt-readmore excerpt-length="430">
+							<div className={`
+								whitespace-pre-line mt-3 mb-6 pr-7
+								quote-mask before:bg-review-${fieldset.provider}
+                            	before:w-[62px] before:h-[49px] before:mr-4 before:float-left before:content-['']
+							`}>{ fieldset.text }</div>
+                            <div className="absolute right-12 bottom-7 hidden text-right">
+                                <button className="underline">
+                                    » { __( 'Read more', 'block-development-examples' ) }
+                                </button>
+                            </div>
+						</excerpt-readmore>
 					</div>
 				)) }
 			</tiny-slider>
