@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: path/to/your/js/file.js:1
+msgid "Slider Settings"
+msgstr ""
+
+#: path/to/your/js/file.js:2
+msgid "Items per row"
+msgstr ""
+
+#: path/to/your/js/file.js:3
+msgid "Review"
+msgstr ""
+
+#: path/to/your/js/file.js:4
+msgid "Review Provider"
+msgstr ""
+
+#: path/to/your/js/file.js:5
+msgid "Title"
+msgstr ""
+
+#: path/to/your/js/file.js:6
+msgid "Text"
+msgstr ""
+
+#: path/to/your/js/file.js:7
+msgid "Rating (1 to 5)"
+msgstr ""
+
+#: path/to/your/js/file.js:8
+msgid "Rating (0.0 to 2.0)"
+msgstr ""
+
+#: path/to/your/js/file.js:9
+msgid "Date"
+msgstr ""
+
+#: path/to/your/js/file.js:10
+msgid "Remove Fieldset"
+msgstr ""
+
+#: path/to/your/js/file.js:11
+msgid "Add Fieldset"
+msgstr ""
+
+#: path/to/your/js/file.js:12
+msgid "Read more"
+msgstr ""
+
+#: path/to/your/js/file.js:13
+msgid "Jameda Review from"
+msgstr ""

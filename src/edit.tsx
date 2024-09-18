@@ -117,24 +117,24 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 						/>
 						{ fieldset.provider === 'Google' && (
 							<TextControl
-								label={ __( 'Rating (1.0 to 5.0)', 'block-development-examples' ) }
+								label={ __( 'Rating (1 to 5)', 'block-development-examples' ) }
 								type="number"
 								value={ fieldset.rating }
 								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
-								min={ 1.0 }
-								max={ 5.0 }
-								step={ 0.1 }
+								min={ 1 }
+								max={ 5 }
+								step={ 1 }
 								placeholder="5.0"
 							/>
 						)}
 						{ fieldset.provider === 'Jameda' && (
 							<TextControl
-								label={ __( 'Rating (0.0 to 1.2)', 'block-development-examples' ) }
+								label={ __( 'Rating (0.0 to 2.0)', 'block-development-examples' ) }
 								type="number"
 								value={ fieldset.rating }
 								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
 								min={ 0.0 }
-								max={ 1.2 }
+								max={ 2.0 }
 								step={ 0.1 }
 								placeholder="1.0"
 							/>

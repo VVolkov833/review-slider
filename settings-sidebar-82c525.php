@@ -12,14 +12,20 @@
  * @package           block-development-examples
  */
 
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
-function settings_sidebar_82c525__register_block() {
+add_action( 'init', function() {
 	register_block_type( __DIR__ . '/build' );
-}
-add_action( 'init', 'settings_sidebar_82c525__register_block' );
+});
+
+add_action( 'plugins_loaded', function() {
+    load_plugin_textdomain( 'block-development-examples', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+});
+
+/*
+add_action( 'wp_footer', function() {
+    error_log( __( 'Items per row', 'block-development-examples' ) );
+});
+
+add_action( 'admin_notices', function() {
+    error_log( '<div class="notice notice-success"><p>' . __( 'Slider Settings', 'block-development-examples' ) . '</p></div>' );
+});
+*/
