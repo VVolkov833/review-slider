@@ -83,7 +83,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 						value={ attributes.items }
 						onChange={ ( val ) => setAttributes( { items: val } ) }
 						min={ 1 }
-						max={ 4 }
+						max={ 3 }
 					/>
 				</PanelBody>
 				

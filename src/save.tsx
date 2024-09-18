@@ -29,7 +29,7 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 				nav-position="bottom"
 				speed="1000"
 				gutter="20"
-				items="2"
+				items={ attributes.items.toString() }
 				class="flex"
 			>
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
