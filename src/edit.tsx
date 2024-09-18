@@ -1,4 +1,6 @@
 import { __ } from '@wordpress/i18n';
+import Google from './components/Google';
+import Jameda from './components/Jameda';
 import { TextControl, Button, TextareaControl, RangeControl, SelectControl, PanelBody, DatePicker } from '@wordpress/components';
 import {
 	useBlockProps,
@@ -43,13 +45,32 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 
 	// Visual preview of the slider in the editor (read-only)
 	const previewSlides = () => (
-		<div className="flex">
-			{attributes.fieldsets.map((fieldset, index) => (
-				<div key={index} className="fieldset-slide border border-red-500 border-dotted">
-					<h2>{fieldset.title}</h2>
-					<div>{fieldset.content}</div>
-				</div>
-			))}
+		<div { ...useBlockProps.save() }>
+			<tiny-slider
+				autoplay="1"
+				controls="false"
+				autoplay-timeout="8000"
+				autoplay-hover-pause="true"
+				autoplay-button-output="false"
+				nav-position="bottom"
+				speed="1000"
+				gutter="20"
+				items="2"
+				className="flex">
+				{ attributes.fieldsets.map( ( fieldset, index ) => (
+					<div key={ index } className="review border border-red-500 border-dotted">
+						<h2>{fieldset.provider}</h2>
+						{(() => {
+							switch (fieldset.provider) {
+								case 'Google':
+									return <Google text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+								case 'Jameda':
+									return <Jameda title={fieldset.title} text={fieldset.text} rating={fieldset.rating} date={fieldset.date} />;
+							}
+						})()}
+					</div>
+				)) }
+			</tiny-slider>
 		</div>
 	);
 

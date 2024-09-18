@@ -38,11 +38,11 @@
     }
   },
   "textdomain": "block-development-examples",
-  "script": "file:./index.js",
   "style": [
     "file:./style-index.css",
     "file:./index.css"
   ],
+  "script": "file:./index.js",
   "editorStyle": "file:./index.css",
   "keywords": [
     "82c525"
