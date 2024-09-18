@@ -25,7 +25,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 
 	// Add a new fieldset with Google as default
 	const addFieldset = () => {
-		const newFieldset = { provider: 'Google', text: '', rating: 5.0, date: new Date().toISOString() };
+		const newFieldset = { provider: 'Google', text: '', rating: 5, date: new Date().toISOString() };
 		setAttributes( { fieldsets: [ ...attributes.fieldsets, newFieldset ] } );
 	};
 
@@ -135,7 +135,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 								min={ 1 }
 								max={ 5 }
 								step={ 1 }
-								placeholder="5.0"
+								placeholder="5"
 							/>
 						)}
 						{ fieldset.provider === 'Jameda' && (
