@@ -3,18 +3,21 @@
     @apply flex justify-center;
 
     button {
+        @apply appearance-none;
         @apply z-40;
         @apply cursor-pointer;
         @apply w-8 h-8 block;
+        @apply p-0 border-0 bg-[transparent];
 
+        @apply before:content-[''];
         @apply before:rounded-full;
-        @apply before:w-1.5 before:h-1.5 before:m-4 before:block;
+        @apply before:w-1.5 before:h-1.5 before:block before:mx-auto;
         @apply before:bg-[#ccc];
         @apply before:transition-all before:duration-300;
 
         &.tns-nav-active {
-            @apply before:bg-[#f00];
-            @apply before:w-4 before:h-4 before:m-[0.65rem] before:block;
+            @apply before:bg-[#aaa];
+            @apply before:w-4 before:h-4 before:block before:mx-auto;
         }
     }
 }

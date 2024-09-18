@@ -44,12 +44,12 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 						})()}
 						<excerpt-readmore excerpt-length="430">
 							<div className={`
-								whitespace-pre-line mt-3 mb-6 pr-7
+								whitespace-pre-line mt-10 mb-8 pr-7
 								quote-mask before:bg-review-${fieldset.provider}
-                            	before:w-[62px] before:h-[49px] before:mr-4 before:float-left before:content-['']
+                            	before:w-[62px] before:h-[49px] before:-mt-7 before:mr-4 before:float-left before:content-['']
 							`}>{ fieldset.text }</div>
                             <div className="absolute right-12 bottom-7 hidden text-right">
-                                <button className="underline">
+                                <button className="appearance-none border-none bg-[transparent] text-inherit underline cursor-pointer">
                                     » { __( 'Read more', 'block-development-examples' ) }
                                 </button>
                             </div>

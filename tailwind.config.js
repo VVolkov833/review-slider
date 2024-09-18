@@ -25,7 +25,11 @@ module.exports = {
         Jameda: '#8ad223',
       }
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        'inherit': 'inherit',
+      }
+    },
   },
   plugins: [],
 }

@@ -10,6 +10,15 @@
 
     button {
 
+        -webkit-appearance: none;
+
+           -moz-appearance: none;
+
+                appearance: none
+    }
+
+    button {
+
         z-index: 40
     }
 
@@ -33,6 +42,28 @@
         width: 2rem
     }
 
+    button {
+
+        border-width: 0px
+    }
+
+    button {
+
+        background-color: transparent
+    }
+
+    button {
+
+        padding: 0px
+    }
+
+    button::before {
+
+        --tw-content: '';
+
+        content: var(--tw-content)
+    }
+
     button::before {
 
         content: var(--tw-content);
@@ -44,7 +75,9 @@
 
         content: var(--tw-content);
 
-        margin: 1rem
+        margin-right: auto;
+
+        margin-left: auto
     }
 
     button::before {
@@ -103,14 +136,16 @@
 
             --tw-bg-opacity: 1;
 
-            background-color: rgb(255 0 0 / var(--tw-bg-opacity))
+            background-color: rgb(170 170 170 / var(--tw-bg-opacity))
         }
 
         &.tns-nav-active::before {
 
             content: var(--tw-content);
 
-            margin: 0.65rem
+            margin-right: auto;
+
+            margin-left: auto
         }
 
         &.tns-nav-active::before {
