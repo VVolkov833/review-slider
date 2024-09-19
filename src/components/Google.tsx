@@ -13,8 +13,8 @@ export default function Google({ rating, date }: GoogleProps) {
 
 	return (
         <div className="flex items-start gap-4 pr-7">
-            <div className="w-[85px] text-review-Google before:bg-review-Google">
-                <span title={`${__( 'Rating', 'vv' )} ${rating}`}>{ '★'.repeat(roundedRating) || '' }</span>
+            <div className="w-fit text-review-Google before:bg-review-Google whitespace-nowrap">
+                <div title={`${__( 'Rating', 'vv' )} ${rating}`}>{ '★'.repeat(roundedRating) || '' }</div>
                 <img src={googleIcon} alt="Google Review" className="w-[85px] h-[29px]" />
             </div>
             <div className="text-[1.4rem] font-bold leading-[1.3]">

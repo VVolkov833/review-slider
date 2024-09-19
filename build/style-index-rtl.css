@@ -28,9 +28,6 @@
             max-width: 1536px;
         }
     }
-    .pointer-events-none {
-        pointer-events: none;
-    }
     .static {
         position: static;
     }
@@ -76,6 +73,10 @@
     .w-\[85px\] {
         width: 85px;
     }
+    .w-fit {
+        width: -moz-fit-content;
+        width: fit-content;
+    }
     .w-full {
         width: 100%;
     }
@@ -99,8 +100,17 @@
     .gap-4 {
         gap: 1rem;
     }
+    .whitespace-nowrap {
+        white-space: nowrap;
+    }
     .whitespace-pre-line {
         white-space: pre-line;
+    }
+    .border {
+        border-width: 1px;
+    }
+    .border-dotted {
+        border-style: dotted;
     }
     .border-none {
         border-style: none;
@@ -114,6 +124,9 @@
     }
     .p-3 {
         padding: 0.75rem;
+    }
+    .p-5 {
+        padding: 1.25rem;
     }
     .p-7 {
         padding: 1.75rem;
@@ -159,9 +172,6 @@
     }
     .underline {
         text-decoration-line: underline;
-    }
-    .opacity-30 {
-        opacity: 0.3;
     }
 
     .quote-mask::before {
