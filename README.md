@@ -1,9 +1,26 @@
-npm install
-npx tailwindcss init
-npm install typescript @wordpress/scripts @types/wordpress__blocks --save-dev
-npm run start
-npm run build
+INSTALL
+    npm install
+    npx tailwindcss init
+    npm install typescript @wordpress/scripts @types/wordpress__blocks --save-dev
+    npm run start
+    npm run build
 
+
+TODOS
+	translations
+		check how it works on other plugins
+	console error
+	fix issues & volnurabilities on install
+	fix the environment and underlined mistakes
+	optimize scripts & styles delivery with webpack
+		clean readme
+	improve the editor interface (date input)
+	make the correct width on the preview in the editor
+	make the editor half-transparent?
+	add the icon
+
+
+WEBPACK PAGESPEED
 To ensure that your tiny-slider.ts is bundled into frontend.js during the build process, you need to configure the webpack setup through @wordpress/scripts. Since @wordpress/scripts uses webpack under the hood, we can adjust the configuration to make sure the TypeScript file is compiled and bundled correctly.
 
 Here’s how you can achieve this:

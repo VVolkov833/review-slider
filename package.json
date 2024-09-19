@@ -1,7 +1,7 @@
 {
 	"name": "@vv/review-slider",
-	"version": "0.1.0",
-	"author": "The WordPress Contributors",
+	"version": "1.0.0",
+	"author": "Vadim Volkov",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
 		"build": "wp-scripts build",
