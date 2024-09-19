@@ -7,6 +7,7 @@ INSTALL
 
 
 TODOS
+    asks to recover the block on first save
 	translations
 		check how it works on other plugins
 	console error
