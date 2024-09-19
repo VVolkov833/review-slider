@@ -18,7 +18,7 @@ export default function Google({ rating, date }: GoogleProps) {
                 <img src={googleIcon} alt="Google Review" className="w-[85px] h-[29px]" />
             </div>
             <div className="text-[1.4rem] font-bold leading-[1.3]">
-                { date && <div>{  __( 'Review', 'vv' ) } { dateI18n( 'F Y', date ) }</div> }
+                { date && <div>{  __( 'Review', 'vv' ) } <span className="whitespace-nowrap">{ dateI18n( 'F Y', date ) }</span></div> }
             </div>
         </div>
 	);

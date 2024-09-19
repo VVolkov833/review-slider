@@ -44,12 +44,12 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 						})()}
 						<excerpt-readmore excerpt-length="430">
 							<div className={`
-								whitespace-pre-line mt-10 mb-8 pr-7
+								whitespace-pre-line mt-10 mb-10 pr-7
 								quote-mask before:bg-review-${fieldset.provider}
                             	before:w-[62px] before:h-[49px] before:-mt-7 before:mr-4 before:float-left before:content-['']
 							`}>{ fieldset.text }</div>
-                            <div className="absolute right-12 bottom-7 hidden text-right">
-                                <button className="appearance-none border-none bg-[transparent] text-inherit underline cursor-pointer">
+                            <div className="absolute right-12 bottom-7 text-right">
+                                <button className="appearance-none border-none p-0 bg-[transparent] text-inherit hover:text-[#000] underline cursor-pointer">
                                     » { __( 'Read more', 'vv' ) }
                                 </button>
                             </div>

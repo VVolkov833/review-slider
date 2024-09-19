@@ -15,7 +15,7 @@ export default function Jameda({ title, rating, date }: JamedaProps) {
                 <div className="text-[22px] font-bold">{ rating || '1.0' }</div>
             </div>
             <div>
-                { date && <div>{  __( 'Jameda Review from', 'vv' ) } { dateI18n( 'j. F Y', date ) }</div> }
+                { date && <div>{  __( 'Jameda Review from', 'vv' ) } <span className="whitespace-nowrap">{ dateI18n( 'j. F Y', date ) }</span></div> }
                 { title && <div className="text-[1.4rem] font-bold leading-[1.3]">{ title }</div> }
             </div>
         </div>
