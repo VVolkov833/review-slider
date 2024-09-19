@@ -7,7 +7,7 @@ module.exports = {
     './src/**/*.tsx',
   ],
   options: {
-    safelist: ['wp-block-block-development-examples-settings-sidebar-82c525'],
+    safelist: ['wp-block-vv-review-slider'],
   },
   purge: {
     content: [

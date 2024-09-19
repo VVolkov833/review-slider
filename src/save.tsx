@@ -50,7 +50,7 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 							`}>{ fieldset.text }</div>
                             <div className="absolute right-12 bottom-7 hidden text-right">
                                 <button className="appearance-none border-none bg-[transparent] text-inherit underline cursor-pointer">
-                                    » { __( 'Read more', 'block-development-examples' ) }
+                                    » { __( 'Read more', 'vv' ) }
                                 </button>
                             </div>
 						</excerpt-readmore>

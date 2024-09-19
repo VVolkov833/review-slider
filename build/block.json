@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "block-development-examples/settings-sidebar-82c525",
+  "name": "vv/review-slider",
   "version": "0.1.0",
-  "title": "Settings Sidebar 82c525",
+  "title": "Gutenberg Review Slider",
   "category": "widgets",
   "example": {},
   "attributes": {
@@ -37,14 +37,12 @@
       "default": "#ffffff"
     }
   },
-  "textdomain": "block-development-examples",
+  "textdomain": "vv",
   "style": [
     "file:./style-index.css",
     "file:./index.css"
   ],
   "script": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "keywords": [
-    "82c525"
-  ]
+  "keywords": []
 }

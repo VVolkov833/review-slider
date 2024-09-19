@@ -75,7 +75,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 							`}>{ truncateText(fieldset.text, 430) }</div>
                             <div className="absolute right-12 bottom-7 text-right">
                                 <button className="appearance-none border-none bg-[transparent] text-inherit underline pointer-events-none opacity-30">
-                                    » { __( 'Read more', 'block-development-examples' ) }
+                                    » { __( 'Read more', 'vv' ) }
                                 </button>
                             </div>
 						</div>
@@ -88,9 +88,9 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls key="settings">
-				<PanelBody title={ __( 'Slider Settings', 'block-development-examples' ) }>
+				<PanelBody title={ __( 'Slider Settings', 'vv' ) }>
 					<RangeControl
-						label={ __( 'Items per row', 'block-development-examples' ) }
+						label={ __( 'Items per row', 'vv' ) }
 						value={ attributes.items }
 						onChange={ ( val ) => setAttributes( { items: val } ) }
 						min={ 1 }
@@ -101,11 +101,11 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
 					<PanelBody
 						key={ index }
-						title={ __( `Review ${index + 1}`, 'block-development-examples' ) }
+						title={ __( `Review ${index + 1}`, 'vv' ) }
 						initialOpen={ false }
 					>
 						<SelectControl
-							label={ __( 'Review Provider', 'block-development-examples' ) }
+							label={ __( 'Review Provider', 'vv' ) }
 							value={ fieldset.provider }
 							options={ [
 								{ label: 'Google', value: 'Google' },
@@ -116,19 +116,19 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 						
 						{ fieldset.provider === 'Jameda' && (
 							<TextControl
-								label={ __( 'Title', 'block-development-examples' ) }
+								label={ __( 'Title', 'vv' ) }
 								value={ fieldset.title || '' }
 								onChange={ ( val ) => updateFieldset( index, 'title', val ) }
 							/>
 						)}
 						<TextareaControl	
-							label={ __( 'Text', 'block-development-examples' ) }
+							label={ __( 'Text', 'vv' ) }
 							value={ fieldset.text }
 							onChange={ ( val ) => updateFieldset( index, 'text', val ) }
 						/>
 						{ fieldset.provider === 'Google' && (
 							<TextControl
-								label={ __( 'Rating (1 to 5)', 'block-development-examples' ) }
+								label={ __( 'Rating (1 to 5)', 'vv' ) }
 								type="number"
 								value={ fieldset.rating }
 								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
@@ -140,7 +140,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 						)}
 						{ fieldset.provider === 'Jameda' && (
 							<TextControl
-								label={ __( 'Rating (0.0 to 2.0)', 'block-development-examples' ) }
+								label={ __( 'Rating (0.0 to 2.0)', 'vv' ) }
 								type="number"
 								value={ fieldset.rating }
 								onChange={ ( val ) => updateFieldset( index, 'rating', parseFloat(val) ) }
@@ -151,7 +151,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 							/>
 						)}
 						<DatePicker
-							label={ __( 'Date', 'block-development-examples' ) }
+							label={ __( 'Date', 'vv' ) }
 							currentDate={ fieldset.date }
 							onChange={ ( date ) => updateFieldset( index, 'date', date ) }
 						/>
@@ -160,12 +160,12 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 							isDestructive
 							onClick={ () => removeFieldset( index ) }
 						>
-							{ __( 'Remove Fieldset', 'block-development-examples' ) }
+							{ __( 'Remove Fieldset', 'vv' ) }
 						</Button>
 					</PanelBody>
 				) )}
 				<Button isPrimary onClick={ addFieldset }>
-					{ __( 'Add Fieldset', 'block-development-examples' ) }
+					{ __( 'Add Fieldset', 'vv' ) }
 				</Button>
 			</InspectorControls>
 
