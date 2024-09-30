@@ -7,6 +7,7 @@ INSTALL
 
 
 TODOS
+    run through the console warnings
     editor inside wide group on Lanuwa moves to the left
     asks to recover the block on first save
 	translations

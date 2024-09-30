@@ -73,7 +73,7 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 					<div key={ index } className="w-full p-3 relative box-border">
 						{fieldset.provider === 'Google' && <Google rating={fieldset.rating} date={fieldset.date} />}
 						{fieldset.provider === 'Jameda' && <Jameda rating={fieldset.rating} date={fieldset.date} title={fieldset.title} />}
-						<div className="whitespace-pre-line mt-10 mb-10 pr-7">{ truncateText(fieldset.text, 430) }</div>
+						<div className="whitespace-pre-line mt-10 mb-10 pr-7">{ truncateText(fieldset.text || '', 430) }</div>
 					</div>
 				))}
 			</div>

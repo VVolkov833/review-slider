@@ -20,7 +20,7 @@
 		},
 		"items": {
 			"type": "number",
-			"default": 1
+			"default": 2
 		},
 		"bg_color": { 
 			"type": "string", 
