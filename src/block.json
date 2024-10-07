@@ -2,10 +2,14 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "vv/review-slider",
-	"version": "0.1.0",
 	"title": "Gutenberg Review Slider",
+	"version": "1.0.0",
+	"textdomain": "vv833",
 	"category": "widgets",
 	"example": {},
+	"supports": {
+		"align": ["wide", "full"]
+	},
 	"attributes": {
 		"fieldsets": {
 			"type": "array",
@@ -31,7 +35,6 @@
 			"default": "#ffffff" 
 		}
 	},
-	"textdomain": "vv",
 	"style": [
 		"file:./style-index.css",
 		"file:./index.css"

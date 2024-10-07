@@ -14,11 +14,11 @@ export default function Google({ rating, date }: GoogleProps) {
 	return (
         <div className="flex items-start gap-4 pr-7">
             <div className="w-fit text-review-Google before:bg-review-Google whitespace-nowrap">
-                <div title={`${__( 'Rating', 'vv' )} ${rating}`}>{ '★'.repeat(roundedRating) || '' }</div>
-                <img src={googleIcon} alt="Google Review" className="w-[85px] h-[29px]" />
+                <div title={`${__( 'Rating', 'vv833' )} ${rating}`}>{ '★'.repeat(roundedRating) || '' }</div>
+                <img src={googleIcon} alt="Google Review" className="w-[85px] min-w-[85px] h-auto" />
             </div>
             <div className="text-[1.4rem] font-bold leading-[1.3]">
-                { date && <div>{  __( 'Review', 'vv' ) } <span className="whitespace-nowrap">{ dateI18n( 'F Y', date ) }</span></div> }
+                { date && <div>{  __( 'Review', 'vv833' ) } <span>{ dateI18n( 'F Y', date ) }</span></div> }
             </div>
         </div>
 	);

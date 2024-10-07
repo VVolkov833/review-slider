@@ -42,15 +42,15 @@ export default function save( { attributes }: { attributes: BlockAttributes } ) 
 									return <Jameda rating={fieldset.rating} date={fieldset.date} title={fieldset.title} />;
 							}
 						})()}
-						<excerpt-readmore excerpt-length="430">
+						<excerpt-readmore excerpt-length="390">
 							<div className={`
 								whitespace-pre-line mt-10 mb-10 pr-7
 								quote-mask before:bg-review-${fieldset.provider}
                             	before:w-[62px] before:h-[49px] before:-mt-7 before:mr-4 before:float-left before:content-['']
 							`}>{ fieldset.text }</div>
                             <div className="absolute right-12 bottom-7 text-right">
-                                <button className="appearance-none border-none p-0 bg-[transparent] text-inherit hover:text-[#000] underline cursor-pointer">
-                                    » { __( 'Read more', 'vv' ) }
+                                <button className="appearance-none border-none p-0 bg-[transparent] text-inherit hover:text-[#000] focus:text-[#000] underline cursor-pointer" data-text-swap={ `» ${__( 'Weniger lesen', 'vv833' )}` }>
+									» { __( 'Mehr lesen', 'vv833' ) }
                                 </button>
                             </div>
 						</excerpt-readmore>

@@ -73,19 +73,23 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 					<div key={ index } className="w-full p-3 relative box-border">
 						{fieldset.provider === 'Google' && <Google rating={fieldset.rating} date={fieldset.date} />}
 						{fieldset.provider === 'Jameda' && <Jameda rating={fieldset.rating} date={fieldset.date} title={fieldset.title} />}
-						<div className="whitespace-pre-line mt-10 mb-10 pr-7">{ truncateText(fieldset.text || '', 430) }</div>
+						<div className="whitespace-pre-line mt-10 mb-10 pr-7">{ truncateText(fieldset.text || '', 390) }</div>
 					</div>
 				))}
 			</div>
 		</div>
 	);
 
+	const blockProps = useBlockProps({
+		className: attributes.align ? `align${attributes.align}` : '',
+	  });
+
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...blockProps }>
 			<InspectorControls key="settings">
-				<PanelBody title={ __( 'Slider Settings', 'vv' ) }>
+				<PanelBody title={ __( 'Slider Settings', 'vv833' ) }>
 					<RangeControl
-						label={ __( 'Items per row', 'vv' ) }
+						label={ __( 'Items per row', 'vv833' ) }
 						value={ attributes.items }
 						onChange={ ( val ) => setAttributes( { items: val } ) }
 						min={ 1 }
@@ -96,12 +100,12 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 				{ attributes.fieldsets.map( ( fieldset, index ) => (
 					<PanelBody
 						key={ index }
-						title={ __( `Review ${index + 1}`, 'vv' ) }
+						title={ __( `Review ${index + 1}`, 'vv833' ) }
 						initialOpen={ index === openPanelIndex } // Control panel open state
 						onToggle={ () => setOpenPanelIndex(openPanelIndex === index ? null : index) }
 					>
 						<SelectControl
-							label={ __( 'Review Provider', 'vv' ) }
+							label={ __( 'Review Provider', 'vv833' ) }
 							value={ fieldset.provider }
 							options={ [
 								{ label: 'Google', value: 'Google' },
@@ -112,14 +116,14 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 						
 						{ fieldset.provider === 'Jameda' && (
 							<TextControl
-								label={ __( 'Title', 'vv' ) }
+								label={ __( 'Title', 'vv833' ) }
 								value={ fieldset.title || '' }
 								onChange={ ( val ) => updateFieldset( index, 'title', val ) }
 							/>
 						)}
 
 						<TextareaControl	
-							label={ __( 'Text', 'vv' ) }
+							label={ __( 'Text', 'vv833' ) }
 							value={ fieldset.text }
 							onChange={ ( val ) => updateFieldset( index, 'text', val ) }
 							ref={index === attributes.fieldsets.length - 1 ? newFieldsetRef : undefined} // Ref for focusing new fieldset
@@ -159,22 +163,22 @@ export default function Edit( { attributes, setAttributes }: BlockEditProps<Bloc
 							isDestructive
 							onClick={ () => removeFieldset( index ) }
 						>
-							{ __( 'Remove Fieldset', 'vv' ) }
+							{ __( 'Remove Fieldset', 'vv833' ) }
 						</Button>
 					</PanelBody>
 				))}
 
 				<Button isPrimary onClick={ addFieldset }>
-					{ __( 'Add Fieldset', 'vv' ) }
+					{ __( 'Add Fieldset', 'vv833' ) }
 				</Button>
 			</InspectorControls>
 
 			{/* Display this when there are no fieldsets */}
 			{attributes.fieldsets.length === 0 ? (
 				<div className="border border-dotted p-5 text-center">
-					<h3>{ __( 'Add the first review', 'vv' ) }</h3>
+					<h3>{ __( 'Add the first review', 'vv833' ) }</h3>
 					<Button isPrimary onClick={ addFieldset }>
-						{ __( 'Add Fieldset', 'vv' ) }
+						{ __( 'Add Fieldset', 'vv833' ) }
 					</Button>
 				</div>
 			) : (

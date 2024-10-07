@@ -1,56 +1,93 @@
 class ExcerptReadmore extends HTMLElement {
     static defaultExcerptLength = 200
 
-    get textContainer (): HTMLElement {
+    get textContainer(): HTMLElement {
         return this.querySelector(':scope > :first-child')!
     }
 
-    get linkContainer (): HTMLElement {
+    get linkContainer(): HTMLElement {
         return this.querySelector(':scope > :last-child')!
     }
 
     string: string
+    isExpanded = false
+    needsExpansion = false
 
-    constructor () {
+    constructor() {
         super()
-        this.waitForDOM();
+        this.waitForDOM()
     }
 
-    waitForDOM () {
+    waitForDOM() {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
-                this.init();
-            });
+                this.init()
+            })
         } else {
-            this.init();
+            this.init()
         }
     }
 
-    init () {
+    init() {
         this.string = this.textContainer.innerText
 
         let excerptLength = +(this.getAttribute('excerpt-length') || ExcerptReadmore.defaultExcerptLength)
 
-        if (this.string.length <= excerptLength) {
+        if (this.string.length > excerptLength) {
+            this.needsExpansion = true
+            this.updateContent(excerptLength)
+            this.linkContainer.style.display = 'block'
+
+            const button = this.linkContainer.querySelector('button')!
+            button.addEventListener('click', event => {
+                event.preventDefault()
+                this.toggleContent()
+            }, true)
+        } else {
             this.unfold()
-            return
+            this.linkContainer.style.display = 'none'
         }
+    }
 
-        this.textContainer.innerText = this.trimmedString(excerptLength)
-        this.linkContainer.style.display = 'block'
+    toggleContent() {
+        this.isExpanded = !this.isExpanded
 
-        this.linkContainer.querySelector('button')!.addEventListener('click', event => {
-            event.preventDefault()
+        if (this.isExpanded) {
             this.unfold()
-        }, true)
+        } else {
+            this.fold()
+        }
     }
 
-    unfold () {
+    swapButtonText() {
+        const button = this.linkContainer.querySelector('button')
+        if ( !button ) return
+        const swapText = button.getAttribute('data-text-swap') || ''
+        const swapBackText = button.innerText || ''
+        button.innerText = swapText
+        button.setAttribute('data-text-swap', swapBackText)
+    }
+
+    unfold() {
         this.textContainer.innerText = this.string
-        this.linkContainer.style.display = 'none'
+        if (this.needsExpansion) {
+            this.swapButtonText()
+        }
     }
 
-    trimmedString (excerptLength: number) {
+    fold() {
+        const excerptLength = +(this.getAttribute('excerpt-length') || ExcerptReadmore.defaultExcerptLength)
+        this.updateContent(excerptLength)
+        if (this.needsExpansion) {
+            this.swapButtonText()
+        }
+    }
+
+    updateContent(excerptLength: number) {
+        this.textContainer.innerText = this.trimmedString(excerptLength)
+    }
+
+    trimmedString(excerptLength: number) {
         return this.string.substring(0, this.string.substring(0, excerptLength).lastIndexOf(' ')) + '…'
     }
 }

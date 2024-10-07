@@ -1,5 +1,8 @@
-/* @tailwind base; */
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/style.css ***!
+  \*******************************************************************************************************************************************************************/
 .wp-block-vv-review-slider {
+    /* @tailwind base; */
     .container {
         width: 100%;
     }
@@ -61,8 +64,8 @@
     .aspect-square {
         aspect-ratio: 1 / 1;
     }
-    .h-\[29px\] {
-        height: 29px;
+    .h-auto {
+        height: auto;
     }
     .w-\[85px\] {
         width: 85px;
@@ -73,6 +76,9 @@
     }
     .w-full {
         width: 100%;
+    }
+    .min-w-\[85px\] {
+        min-width: 85px;
     }
     .transform {
         transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -239,6 +245,10 @@
     content: var(--tw-content);
 }
 .hover\:text-\[\#000\]:hover {
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.focus\:text-\[\#000\]:focus {
     --tw-text-opacity: 1;
     color: rgb(0 0 0 / var(--tw-text-opacity));
 }
